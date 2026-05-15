@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/f72235d8-9a80-476a-b2e8-5de1608d5632" 
-         width="128" 
-         height="128" 
+<img src="https://github.com/user-attachments/assets/f72235d8-9a80-476a-b2e8-5de1608d5632"
+         width="128"
+         height="128"
          alt="Icon">
 
 # SMBU Connect Verge
@@ -17,15 +17,23 @@
 
 </div>
 
+> **Note**: This project is forked from [kowyo/hitsz-connect-verge](https://github.com/kowyo/hitsz-connect-verge). Thanks to [Kowyo](https://github.com/kowyo) for the original work.
+
 ## Introduction
 
-SMBU Connect Verge is a GUI of [ZJU Connect](https://github.com/Mythologyli/zju-connect). It is built for users of ZJU Connect/EasyConnect at SMBU (Shenzhen MSU-BIT University).
+SMBU Connect Verge is a GUI of [ZJU Connect](https://github.com/Mythologyli/zju-connect). It is built for users of ZJU Connect/EasyConnect at SMBU (Shenzhen MSU-BIT University, 深圳北理莫斯科大学).
+
+## Platform Support
+
+> [!WARNING]
+> - **Windows**: Fully supported and tested.
+> - **macOS**: Not supported. The maintainer does not have access to macOS for testing. If you need macOS support, please fork this repository.
+> - **Linux**: Not guaranteed. May work but is not actively tested.
 
 ## Features
 
 - Fast and green compared to **EasyConnect**.
 - Built with PySide6, easy to build and maintain.
-- Multi-platform support, with native optimization for the **macOS** version.
 - Works with other applications like Clash, Remote Desktop, and SSH. (See [Working with other applications](#working-with-other-applications))
 - Supports custom server address/DNS/HTTP/SOCKS5 proxy port, and keep-alive settings. (If you need additional parameters, please submit an issue/PR)
 
@@ -41,13 +49,6 @@ You can install SMBU Connect Verge in two ways: downloading pre-built binaries o
 ### Method 1: Downloading pre-built binaries
 
 SMBU Connect Verge provides out-of-the-box experience. You can download the latest version from the [release page](https://github.com/imBlanker/smbu-connect-verge/releases/latest).
-
-> [!IMPORTANT]
-> For macOS version, you need to grant access to the application by running:
->
-> ```bash
-> sudo xattr -rd com.apple.quarantine /Applications/SMBU\ Connect\ Verge.app
-> ```
 
 ### Method 2: Building from source
 
@@ -150,12 +151,6 @@ For Windows users, you can use [ncat](https://nmap.org/download.html) to setup S
 ssh -o "ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p" <root>@<server> -p <port>
 ```
 
-## Screenshots
-
-| Windows                                                    | Mac                                                | Linux                                                  |
-| ---------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------ |
-| <img width="412" alt="windows" src="assets/windows.png" /> | <img width="412" alt="mac" src="assets/mac.png" /> | <img width="412" alt="linux" src="assets/linux.png" /> |
-
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
@@ -169,9 +164,9 @@ Also, any typo is welcome to be fixed.
 
 ## Credits
 
-- [Mythologyli](https://github.com/Mythologyli) for the project [ZJU Connect](https://github.com/Mythologyli/zju-connect).
+- [Kowyo](https://github.com/kowyo) for the original project [hitsz-connect-verge](https://github.com/kowyo/hitsz-connect-verge), from which this project is forked.
 
-- [Keldos](https://github.com/Keldos-Li) for designing the macOS version's icon.
+- [Mythologyli](https://github.com/Mythologyli) for the project [ZJU Connect](https://github.com/Mythologyli/zju-connect).
 
 - [EasierConnect](https://github.com/lyc8503/EasierConnect).
 

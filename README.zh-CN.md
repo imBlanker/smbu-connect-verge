@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/f72235d8-9a80-476a-b2e8-5de1608d5632" 
-         width="128" 
-         height="128" 
+<img src="https://github.com/user-attachments/assets/f72235d8-9a80-476a-b2e8-5de1608d5632"
+         width="128"
+         height="128"
          alt="Icon">
 
 # SMBU Connect Verge
@@ -17,15 +17,23 @@
 
 </div>
 
+> **说明**：本项目 fork 自 [kowyo/hitsz-connect-verge](https://github.com/kowyo/hitsz-connect-verge)，感谢 [Kowyo](https://github.com/kowyo) 的原始工作。
+
 ## 简介
 
-SMBU Connect Verge 是 [ZJU Connect](https://github.com/Mythologyli/zju-connect) 的图形用户界面（GUI）。适用于北京师范大学-香港浸会大学联合国际学院（SMBU）的 ZJU Connect/EasyConnect 用户。
+SMBU Connect Verge 是 [ZJU Connect](https://github.com/Mythologyli/zju-connect) 的图形用户界面（GUI）。适用于深圳北理莫斯科大学（SMBU）的 ZJU Connect/EasyConnect 用户。
+
+## 平台支持
+
+> [!WARNING]
+> - **Windows**：完全支持，已测试。
+> - **macOS**：不支持。维护者没有 macOS 设备进行测试。如需 macOS 支持，请 fork 本仓库。
+> - **Linux**：不保证支持。可能可以运行，但未经过主动测试。
 
 ## 功能特点
 
 - 与 **EasyConnect** 相比更快速、更轻量
 - 基于 PySide6，易于构建，方便初学者参与维护
-- 跨平台支持，对 **macOS** 版本进行了原生适配和优化
 - 可与 Clash、远程桌面、SSH 等应用协同工作（参见[与其他应用协同工作](#与其他应用协同工作)章节）
 - 支持自定义服务器地址/DNS/HTTP/SOCKS5 代理端口、定时保活等 ZJU Connect 常用的参数（如果有需要额外添加的参数，请提交 issue/PR）
 
@@ -41,13 +49,6 @@ SMBU Connect Verge 是 [ZJU Connect](https://github.com/Mythologyli/zju-connect)
 ### 方式一：下载预编译版本
 
 SMBU Connect Verge 提供开箱即用体验，您可从[发布页面](https://github.com/imBlanker/smbu-connect-verge/releases/latest)获取最新版本。
-
-> [!IMPORTANT]
-> macOS 版本需通过以下命令授予应用权限：
->
-> ```bash
-> sudo xattr -rd com.apple.quarantine /Applications/SMBU\ Connect\ Verge.app
-> ```
 
 ### 方式二：从源码构建
 
@@ -146,12 +147,6 @@ ssh -o ProxyCommand="nc -X 5 -x 127.0.0.1:1080 %h %p" <用户名>@<服务器地�
 ssh -o "ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p" <用户名>@<服务器地址> -p <端口>
 ```
 
-## 截图
-
-| Windows                                                    | macOS                                              | Linux                                                  |
-| ---------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------ |
-| <img width="412" alt="windows" src="assets/windows.png" /> | <img width="412" alt="mac" src="assets/mac.png" /> | <img width="412" alt="linux" src="assets/linux.png" /> |
-
 ## 贡献
 
 欢迎贡献代码！您可以通过提交 Issue 或 Pull Request 参与项目。重大修改建议先创建 Issue 讨论。
@@ -165,9 +160,9 @@ ssh -o "ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p" <用
 
 ## 鸣谢
 
-- [Mythologyli](https://github.com/Mythologyli) 开发的项目 [ZJU Connect](https://github.com/Mythologyli/zju-connect)
+- [Kowyo](https://github.com/kowyo) 开发的原始项目 [hitsz-connect-verge](https://github.com/kowyo/hitsz-connect-verge)，本项目由此 fork 而来
 
-- [Keldos](https://github.com/Keldos-Li) 为本项目重新设计了 macOS 版本的图标
+- [Mythologyli](https://github.com/Mythologyli) 开发的项目 [ZJU Connect](https://github.com/Mythologyli/zju-connect)
 
 - [EasierConnect](https://github.com/lyc8503/EasierConnect)
 
