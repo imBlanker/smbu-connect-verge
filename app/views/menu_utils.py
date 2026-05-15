@@ -40,11 +40,11 @@ def setup_menubar(window: QMainWindow, version):
 
 def show_about(window, version):
     """Show about dialog"""
-    about_text = f"""<p style="font-size: 15pt;">HITSZ Connect Verge</p>
+    about_text = f"""<p style="font-size: 15pt;">SMBU Connect Verge</p>
     <p style="font-size: 10pt;">Version: {version}</p>
-    <p style="font-size: 10pt;">Repository: <a href="https://github.com/kowyo/hitsz-connect-verge">github.com/kowyo/hitsz-connect-verge</a></p>
-    <p style="font-size: 10pt;">Author: <a href="https://github.com/kowyo">Kowyo</a></p> """
-    QMessageBox.about(window, "关于 HITSZ Connect Verge", about_text)
+    <p style="font-size: 10pt;">Repository: <a href="https://github.com/imBlanker/smbu-connect-verge">github.com/imBlanker/smbu-connect-verge</a></p>
+    <p style="font-size: 10pt;">Author: <a href="https://github.com/imBlanker">imBlanker</a></p> """
+    QMessageBox.about(window, "关于 SMBU Connect Verge", about_text)
 
 
 def copy_log(window):
@@ -71,7 +71,7 @@ def check_for_updates(parent, current_version, startup=False):
             )
             if reply == QMessageBox.Yes:
                 webbrowser.open(
-                    "https://github.com/kowyo/hitsz-connect-verge/releases/latest"
+                    "https://github.com/imBlanker/smbu-connect-verge/releases/latest"
                 )
         else:
             parent.output_text.append(f"New version {latest_version} is available.\n")

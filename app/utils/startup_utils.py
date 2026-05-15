@@ -18,11 +18,11 @@ def set_launch_at_login(enable: bool):
             ) as key:
                 if enable:
                     winreg.SetValueEx(
-                        key, "HITSZ Connect Verge", 0, winreg.REG_SZ, f'"{app_path}"'
+                        key, "SMBU Connect Verge", 0, winreg.REG_SZ, f'"{app_path}"'
                     )
                 else:
                     try:
-                        winreg.DeleteValue(key, "HITSZ Connect Verge")
+                        winreg.DeleteValue(key, "SMBU Connect Verge")
                     except FileNotFoundError:
                         pass
         except OSError:
@@ -64,7 +64,7 @@ def get_launch_at_login() -> bool:
             with winreg.OpenKey(
                 winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_READ
             ) as key:
-                winreg.QueryValueEx(key, "HITSZ Connect Verge")
+                winreg.QueryValueEx(key, "SMBU Connect Verge")
                 return True
         except WindowsError:
             return False

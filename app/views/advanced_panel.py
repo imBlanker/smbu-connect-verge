@@ -45,10 +45,10 @@ class AdvancedSettingsDialog(QDialog):
         # Server & Port
         server_layout = QHBoxLayout()
         server_layout.addWidget(QLabel("VPN 服务端地址"))
-        self.server_input = QLineEdit("vpn.hitsz.edu.cn")
+        self.server_input = QLineEdit("121.15.0.126")
         server_layout.addWidget(self.server_input)
         server_layout.addWidget(QLabel("端口"))
-        self.port_input = QLineEdit("443")
+        self.port_input = QLineEdit("10773")
         self.port_input.setMaximumWidth(60)
         server_layout.addWidget(self.port_input)
         network_layout.addLayout(server_layout)
@@ -56,7 +56,8 @@ class AdvancedSettingsDialog(QDialog):
         # DNS settings
         dns_layout = QHBoxLayout()
         dns_layout.addWidget(QLabel("DNS 服务器地址"))
-        self.dns_input = QLineEdit("10.248.98.30")
+        self.dns_input = QLineEdit("")
+        self.dns_input.setPlaceholderText("自动")
         dns_layout.addWidget(self.dns_input)
         self.auto_dns_switch = QCheckBox("自动配置 DNS")
         self.auto_dns_switch.setChecked(True)

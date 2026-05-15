@@ -24,7 +24,7 @@ VERSION = get_version()
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("HITSZ Connect Verge")
+        self.setWindowTitle("SMBU Connect Verge")
         self.setMinimumSize(300, 450)
 
         self.worker = None

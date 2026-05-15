@@ -40,7 +40,7 @@ class UpdateChecker(QRunnable):
         """Get the latest version from GitHub releases"""
         try:
             url = (
-                "https://api.github.com/repos/kowyo/hitsz-connect-verge/releases/latest"
+                "https://api.github.com/repos/imBlanker/smbu-connect-verge/releases/latest"
             )
             response = requests.get(url, timeout=10)
             return response.json()["tag_name"].lstrip("v")

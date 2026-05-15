@@ -1,6 +1,6 @@
-#define MyAppName "HITSZ Connect Verge"
-#define MyAppPublisher "Kowyo"
-#define MyAppURL "https://github.com/kowyo/hitsz-connect-verge"
+#define MyAppName "SMBU Connect Verge"
+#define MyAppPublisher "imBlanker"
+#define MyAppURL "https://github.com/imBlanker/smbu-connect-verge"
 #define MyAppExeName "main.exe"
 
 [Setup]
@@ -21,7 +21,7 @@ RestartApplications=yes
 
 LicenseFile=LICENSE
 OutputDir=dist
-OutputBaseFilename=hitsz-connect-verge-windows-{#Architecture}-setup
+OutputBaseFilename=smbu-connect-verge-windows-{#Architecture}-setup
 
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog

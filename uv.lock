@@ -105,7 +105,7 @@ wheels = [
 ]
 
 [[package]]
-name = "hitsz-connect-verge"
+name = "smbu-connect-verge"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
