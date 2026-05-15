@@ -5,21 +5,21 @@
          height="128" 
          alt="Icon">
 
-# HITSZ Connect Verge
+# SMBU Connect Verge
 
 [中文](README.zh-CN.md) | [English](README.md)
 
-![Action](https://github.com/kowyo/hitsz-connect-verge/actions/workflows/release.yml/badge.svg)
-![Release](https://img.shields.io/github/v/release/kowyo/hitsz-connect-verge)
-![Downloads](https://img.shields.io/github/downloads/kowyo/hitsz-connect-verge/total)
-![License](https://img.shields.io/github/license/kowyo/hitsz-connect-verge)
-![Stars](https://img.shields.io/github/stars/kowyo/hitsz-connect-verge)
+![Action](https://github.com/imBlanker/smbu-connect-verge/actions/workflows/release.yml/badge.svg)
+![Release](https://img.shields.io/github/v/release/imBlanker/smbu-connect-verge)
+![Downloads](https://img.shields.io/github/downloads/imBlanker/smbu-connect-verge/total)
+![License](https://img.shields.io/github/license/imBlanker/smbu-connect-verge)
+![Stars](https://img.shields.io/github/stars/imBlanker/smbu-connect-verge)
 
 </div>
 
 ## 简介
 
-HITSZ Connect Verge 是 [ZJU Connect](https://github.com/Mythologyli/zju-connect) 的图形用户界面（GUI）。适用于 ZJU Connect/EasyConnect 的用户。
+SMBU Connect Verge 是 [ZJU Connect](https://github.com/Mythologyli/zju-connect) 的图形用户界面（GUI）。适用于北京师范大学-香港浸会大学联合国际学院（SMBU）的 ZJU Connect/EasyConnect 用户。
 
 ## 功能特点
 
@@ -31,22 +31,22 @@ HITSZ Connect Verge 是 [ZJU Connect](https://github.com/Mythologyli/zju-connect
 
 ## 安装指南
 
-您可通过两种方式安装 HITSZ Connect Verge：下载预编译版本或从源码构建。
+您可通过两种方式安装 SMBU Connect Verge：下载预编译版本或从源码构建。
 
 > [!NOTE]
 >
-> 1. 如果你是 HITSZ 校内学生，用户名与密码与[统一身份认证平台](https://ids.hit.edu.cn)的登录凭证相同
+> 1. 如果你是 SMBU 校内学生，用户名与密码与校园统一身份认证平台的登录凭证相同
 > 2. 若下载速度较慢，可尝试使用 [gh-proxy](https://gh-proxy.com) 进行加速
 
 ### 方式一：下载预编译版本
 
-HITSZ Connect Verge提供开箱即用体验，您可从[发布页面](https://github.com/kowyo/hitsz-connect-verge/releases/latest)获取最新版本。
+SMBU Connect Verge 提供开箱即用体验，您可从[发布页面](https://github.com/imBlanker/smbu-connect-verge/releases/latest)获取最新版本。
 
 > [!IMPORTANT]
 > macOS 版本需通过以下命令授予应用权限：
 >
 > ```bash
-> sudo xattr -rd com.apple.quarantine /Applications/HITSZ\ Connect\ Verge.app
+> sudo xattr -rd com.apple.quarantine /Applications/SMBU\ Connect\ Verge.app
 > ```
 
 ### 方式二：从源码构建
@@ -54,8 +54,8 @@ HITSZ Connect Verge提供开箱即用体验，您可从[发布页面](https://gi
 1. 克隆仓库：
 
    ```bash
-   git clone https://github.com/kowyo/hitsz-connect-verge.git
-   cd hitsz-connect-verge
+   git clone https://github.com/imBlanker/smbu-connect-verge.git
+   cd smbu-connect-verge
    ```
 
 2. 安装依赖：
@@ -91,34 +91,32 @@ HITSZ Connect Verge提供开箱即用体验，您可从[发布页面](https://gi
 
 ### 基础信息
 
-- **服务器地址**: vpn.hitsz.edu.cn
+- **服务器地址**: 121.15.0.126
+- **端口**: 10773
 - **SOCKS5代理端口**: 1080
 - **HTTP代理端口**: 1081
-- **DNS服务器**: 10.248.98.30
 
 如需了解更详细的网络配置信息，请访问 [Mythologyli/zju-connect](https://github.com/Mythologyli/zju-connect)。
 
 ### Clash 配置
 
-如果您想同时使用 Clash（比如，同时观看 YouTube 和访问 <http://jw.hitsz.edu.cn> ），您可以将以下配置添加到您的 Clash 配置文件中。
+如果您想同时使用 Clash，您可以将以下配置添加到您的 Clash 配置文件中。
 
-例如，如果您使用 [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev)，您可以前往“配置文件” -> 右键单击您正在使用的配置文件 -> “编辑文件” -> 添加以下配置：
+例如，如果您使用 [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev)，您可以前往”配置文件” -> 右键单击您正在使用的配置文件 -> “编辑文件” -> 添加以下配置：
 
 ```yaml
 # 注：请勿将此直接附加到文件末尾，而是分别将其附加到每个配置块的末尾
 proxies:
   # 您现有的代理...
-  - { name: "HITSZ Connect Verge", type: socks5, server: 127.0.0.1, port: 1080, udp: true }
+  - { name: “SMBU Connect Verge”, type: socks5, server: 127.0.0.1, port: 1080, udp: true }
 
 proxy-groups:
   # 您现有的代理组...
-  - { name: 校园网, type: select, proxies: ["DIRECT", "HITSZ Connect Verge"] }
+  - { name: 校园网, type: select, proxies: [“DIRECT”, “SMBU Connect Verge”] }
 
 rules:
   # 您现有的规则...
-  - "DOMAIN,vpn.hitsz.edu.cn,DIRECT"
-  - "DOMAIN-SUFFIX,hitsz.edu.cn,校园网"
-  - "IP-CIDR,10.0.0.0/8,校园网,no-resolve"
+  - “IP-CIDR,10.0.0.0/8,校园网,no-resolve”
   # - 'IP-CIDR,<其他_ip>,校园网,no-resolve'
 ```
 
@@ -148,8 +146,6 @@ ssh -o ProxyCommand="nc -X 5 -x 127.0.0.1:1080 %h %p" <用户名>@<服务器地�
 ssh -o "ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p" <用户名>@<服务器地址> -p <端口>
 ```
 
-[了解更多](https://hoa.moe/blog/using-hitsz-connect-verge-to-ssh-school-server/#通过-ssh-连接服务器)
-
 ## 截图
 
 | Windows                                                    | macOS                                              | Linux                                                  |
@@ -164,8 +160,8 @@ ssh -o "ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p" <用
 
 ## 相关项目
 
-- [chenx-dust/HITsz-Connect-for-Windows](https://github.com/chenx-dust/HITsz-Connect-for-Windows)：支持高级设置与多平台的 HITsz 版 ZJU-Connect
-- [Co-ding-Man/hitsz-connect-for-windows](https://github.com/Co-ding-Man/hitsz-connect-for-windows)：适用于 HITSZ 的开箱即用版 zju-connect 简易 GUI
+- [chenx-dust/EZ4Connect](https://github.com/chenx-dust/EZ4Connect)：跨平台的 ZJU Connect 图形界面
+- [Mythologyli/zju-connect](https://github.com/Mythologyli/zju-connect)：底层 VPN 客户端
 
 ## 鸣谢
 

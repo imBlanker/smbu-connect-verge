@@ -124,28 +124,28 @@ jobs:
             --macos-target-arch=${{ matrix.target_arch }} \
             --macos-create-app-bundle \
             --macos-app-icon=app/resources/icons/icon.icns \
-            --macos-app-name="HITSZ Connect Verge" \
+            --macos-app-name="SMBU Connect Verge" \
             --macos-app-version=$(cat .app-version) \
             --output-dir=dist \
             --remove-output \
             app/main.py
 
-          mv dist/main.app dist/HITSZ\ Connect\ Verge.app
+          mv dist/main.app dist/SMBU\ Connect\ Verge.app
 
       - name: Create DMG (macOS)
         if: runner.os == 'macOS'
         run: |
           brew install create-dmg
           create-dmg \
-            --volname "HITSZ Connect Verge" \
+            --volname "SMBU Connect Verge" \
             --background "app/resources/installer/bg.svg" \
             --window-pos 400 200 \
             --window-size 660 400 \
             --icon-size 100 \
-            --icon "HITSZ Connect Verge.app" 160 185 \
+            --icon "SMBU Connect Verge.app" 160 185 \
             --app-drop-link 500 185 \
-            "dist/hitsz-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}.dmg" \
-            "dist/HITSZ Connect Verge.app"
+            "dist/smbu-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}.dmg" \
+            "dist/SMBU Connect Verge.app"
 
       # Windows specific build
       - name: Build Executable (Windows)
@@ -161,9 +161,9 @@ jobs:
             --include-data-dir=app=app `
             --include-data-files=app\core\zju-connect.exe=app\core\zju-connect.exe `
             --include-data-files=.app-version=.app-version `
-            --product-name="HITSZ Connect Verge" `
+            --product-name="SMBU Connect Verge" `
             --product-version=$(Get-Content .app-version) `
-            --file-description="HITSZ Connect Verge" `
+            --file-description="SMBU Connect Verge" `
             --windows-icon-from-ico=app\resources\icons\icon.ico `
             --windows-console-mode=disable `
             --output-dir=dist `
@@ -218,16 +218,16 @@ jobs:
             --enable-plugin=pyside6 \
             --include-data-dir=app=app \
             --include-data-files=.app-version=.app-version \
-            --product-name="HITSZ Connect Verge" \
+            --product-name="SMBU Connect Verge" \
             --product-version=$(cat .app-version) \
-            --file-description="HITSZ Connect Verge" \
+            --file-description="SMBU Connect Verge" \
             --linux-icon=app/resources/icons/icon.png \
             --output-dir=dist \
             --remove-output \
             app/main.py
 
-          mv dist/main.dist dist/hitsz-connect-verge
-          mv dist/hitsz-connect-verge/main.bin dist/hitsz-connect-verge/hitsz-connect-verge
+          mv dist/main.dist dist/smbu-connect-verge
+          mv dist/smbu-connect-verge/main.bin dist/smbu-connect-verge/smbu-connect-verge
 
       - name: Create DEB Package (Linux)
         if: runner.os == 'Linux'
@@ -237,55 +237,55 @@ jobs:
           mkdir -p deb/usr/bin
           mkdir -p deb/usr/share/applications
           mkdir -p deb/usr/share/icons/hicolor/256x256/apps
-          mkdir -p deb/usr/lib/hitsz-connect-verge
+          mkdir -p deb/usr/lib/smbu-connect-verge
 
           # Copy the entire distribution folder instead of just the binary
-          cp -r dist/hitsz-connect-verge/* deb/usr/lib/hitsz-connect-verge/
+          cp -r dist/smbu-connect-verge/* deb/usr/lib/smbu-connect-verge/
 
-          cat > deb/usr/bin/hitsz-connect-verge << EOF
+          cat > deb/usr/bin/smbu-connect-verge << EOF
           #!/bin/bash
-          export PYTHONPATH=/usr/lib/hitsz-connect-verge
-          export LD_LIBRARY_PATH=/usr/lib/hitsz-connect-verge:\$LD_LIBRARY_PATH
-          cd /usr/lib/hitsz-connect-verge
-          exec ./hitsz-connect-verge "\$@"
+          export PYTHONPATH=/usr/lib/smbu-connect-verge
+          export LD_LIBRARY_PATH=/usr/lib/smbu-connect-verge:\$LD_LIBRARY_PATH
+          cd /usr/lib/smbu-connect-verge
+          exec ./smbu-connect-verge "\$@"
           EOF
 
-          chmod +x deb/usr/bin/hitsz-connect-verge
+          chmod +x deb/usr/bin/smbu-connect-verge
 
-          cp app/resources/icons/icon.png deb/usr/share/icons/hicolor/256x256/apps/hitsz-connect-verge.png
+          cp app/resources/icons/icon.png deb/usr/share/icons/hicolor/256x256/apps/smbu-connect-verge.png
 
-          cat > deb/usr/share/applications/hitsz-connect-verge.desktop << EOF
+          cat > deb/usr/share/applications/smbu-connect-verge.desktop << EOF
           [Desktop Entry]
-          Name=HITSZ Connect Verge
-          Exec=hitsz-connect-verge
-          Icon=hitsz-connect-verge
+          Name=SMBU Connect Verge
+          Exec=smbu-connect-verge
+          Icon=smbu-connect-verge
           Type=Application
           Categories=Network;
           EOF
 
           cat > deb/DEBIAN/control << EOF
-          Package: hitsz-connect-verge
+          Package: smbu-connect-verge
           Version: $VERSION
           Section: net
           Priority: optional
           Architecture: ${{ matrix.arch == 'amd64' && 'amd64' || 'arm64' }}
-          Maintainer: Kowyo
-          Description: HITSZ Connect Verge
+          Maintainer: imBlanker
+          Description: SMBU Connect Verge
            A VPN client for ZJU Connect/EasyConnect users.
           Depends: libc6, libglib2.0-0, libgl1
           EOF
 
-          dpkg-deb --build deb dist/hitsz-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}.deb
+          dpkg-deb --build deb dist/smbu-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}.deb
 
       # Upload artifacts common step
       - name: Archive Executable
         uses: actions/upload-artifact@v4
         with:
-          name: hitsz-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}
+          name: smbu-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}
           path: |
-            ${{ runner.os == 'macOS' && 'dist/hitsz-connect-verge-*.dmg' || '' }}
-            ${{ runner.os == 'Windows' && 'dist/hitsz-connect-verge-*-setup.exe' || '' }}
-            ${{ runner.os == 'Linux' && 'dist/hitsz-connect-verge-*.deb' || '' }}
+            ${{ runner.os == 'macOS' && 'dist/smbu-connect-verge-*.dmg' || '' }}
+            ${{ runner.os == 'Windows' && 'dist/smbu-connect-verge-*-setup.exe' || '' }}
+            ${{ runner.os == 'Linux' && 'dist/smbu-connect-verge-*.deb' || '' }}
           if-no-files-found: error
 
   release:

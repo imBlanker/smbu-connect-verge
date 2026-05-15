@@ -4,7 +4,7 @@ from .startup_utils import get_launch_at_login
 
 def save_config(config):
     """Save config using QSettings"""
-    settings = QSettings("Kowyo", "HITSZ Connect Verge")
+    settings = QSettings("imBlanker", "SMBU Connect Verge")
     for key, value in config.items():
         settings.setValue(key, value)
     settings.sync()
@@ -12,14 +12,14 @@ def save_config(config):
 
 def load_config():
     """Load config from QSettings"""
-    settings = QSettings("Kowyo", "HITSZ Connect Verge")
+    settings = QSettings("imBlanker", "SMBU Connect Verge")
     default_config = {
         "username": "",
         "password": "",
         "remember": False,
-        "server": "vpn.hitsz.edu.cn",
-        "port": "443",
-        "dns": "10.248.98.30",
+        "server": "121.15.0.126",
+        "port": "10773",
+        "dns": "",
         "auto_dns": True,
         "proxy": True,
         "launch_at_login": get_launch_at_login(),

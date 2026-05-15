@@ -5,21 +5,21 @@
          height="128" 
          alt="Icon">
 
-# HITSZ Connect Verge
+# SMBU Connect Verge
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-![Action](https://github.com/kowyo/hitsz-connect-verge/actions/workflows/release.yml/badge.svg)
-![Release](https://img.shields.io/github/v/release/kowyo/hitsz-connect-verge)
-![Downloads](https://img.shields.io/github/downloads/kowyo/hitsz-connect-verge/total)
-![License](https://img.shields.io/github/license/kowyo/hitsz-connect-verge)
-![Stars](https://img.shields.io/github/stars/kowyo/hitsz-connect-verge)
+![Action](https://github.com/imBlanker/smbu-connect-verge/actions/workflows/release.yml/badge.svg)
+![Release](https://img.shields.io/github/v/release/imBlanker/smbu-connect-verge)
+![Downloads](https://img.shields.io/github/downloads/imBlanker/smbu-connect-verge/total)
+![License](https://img.shields.io/github/license/imBlanker/smbu-connect-verge)
+![Stars](https://img.shields.io/github/stars/imBlanker/smbu-connect-verge)
 
 </div>
 
 ## Introduction
 
-HITSZ Connect Verge is a GUI of [ZJU Connect](https://github.com/Mythologyli/zju-connect). It is built for users of ZJU Connect/EasyConnect.
+SMBU Connect Verge is a GUI of [ZJU Connect](https://github.com/Mythologyli/zju-connect). It is built for users of ZJU Connect/EasyConnect at SMBU (Shenzhen MSU-BIT University).
 
 ## Features
 
@@ -31,22 +31,22 @@ HITSZ Connect Verge is a GUI of [ZJU Connect](https://github.com/Mythologyli/zju
 
 ## Installation
 
-You can install HITSZ Connect Verge in two ways: downloading pre-built binaries or building from source.
+You can install SMBU Connect Verge in two ways: downloading pre-built binaries or building from source.
 
 > [!NOTE]
 >
-> 1. If you are a student of HITSZ, username and password are the same as the ones you use to log in to the [Unified Identity Authentic Platform](https://ids.hit.edu.cn).
+> 1. If you are a student of SMBU, username and password are the same as the ones you use to log in to the campus unified identity authentication platform.
 > 2. If the download speed is slow, you can try using [gh-proxy](https://gh-proxy.com) to download.
 
 ### Method 1: Downloading pre-built binaries
 
-HITSZ Connect Verge provides out-of-the-box experience. You can download the latest version from the [release page](https://github.com/kowyo/hitsz-connect-verge/releases/latest).
+SMBU Connect Verge provides out-of-the-box experience. You can download the latest version from the [release page](https://github.com/imBlanker/smbu-connect-verge/releases/latest).
 
 > [!IMPORTANT]
 > For macOS version, you need to grant access to the application by running:
 >
 > ```bash
-> sudo xattr -rd com.apple.quarantine /Applications/HITSZ\ Connect\ Verge.app
+> sudo xattr -rd com.apple.quarantine /Applications/SMBU\ Connect\ Verge.app
 > ```
 
 ### Method 2: Building from source
@@ -54,8 +54,8 @@ HITSZ Connect Verge provides out-of-the-box experience. You can download the lat
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/kowyo/hitsz-connect-verge.git
-   cd hitsz-connect-verge
+   git clone https://github.com/imBlanker/smbu-connect-verge.git
+   cd smbu-connect-verge
    ```
 
 2. Install dependencies:
@@ -91,16 +91,16 @@ HITSZ Connect Verge provides out-of-the-box experience. You can download the lat
 
 ### Basic information
 
-- **Server**: vpn.hitsz.edu.cn
+- **Server**: 121.15.0.126
+- **Port**: 10773
 - **SOCKS5 Proxy**: 1080
 - **HTTP Proxy**: 1081
-- **DNS Server**: 10.248.98.30
 
 If you want to learn more about the network configuration, you can visit [Mythologyli/zju-connect](https://github.com/Mythologyli/zju-connect).
 
 ### Clash
 
-If you want to use Clash at the same time (e.g. watching Youtube and visiting <http://jw.hitsz.edu.cn> at the same time), you can add the following configuration to your clash configuration file.
+If you want to use Clash at the same time, you can add the following configuration to your clash configuration file.
 
 For example, if you are using [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev), you can go to 'Profiles' -> Right click on the profile you are using -> 'Edit File' -> Add the following configuration:
 
@@ -108,16 +108,14 @@ For example, if you are using [Clash Verge Rev](https://github.com/clash-verge-r
 # note: do not append this to the end of the file directly, append it separately to the corresponding position
 proxies:
   # your existing proxies...
-  - { name: "HITSZ Connect Verge", type: socks5, server: 127.0.0.1, port: 1080, udp: true }
+  - { name: "SMBU Connect Verge", type: socks5, server: 127.0.0.1, port: 1080, udp: true }
 
 proxy-groups:
   # your existing proxy-groups...
-  - { name: 校园网, type: select, proxies: ["DIRECT", "HITSZ Connect Verge"] }
+  - { name: 校园网, type: select, proxies: ["DIRECT", "SMBU Connect Verge"] }
 
 rules:
   # your existing rules...
-  - "DOMAIN,vpn.hitsz.edu.cn,DIRECT"
-  - "DOMAIN-SUFFIX,hitsz.edu.cn,校园网"
   - "IP-CIDR,10.0.0.0/8,校园网,no-resolve"
   # - 'IP-CIDR,<other_ip>,校园网,no-resolve'
 ```
@@ -152,8 +150,6 @@ For Windows users, you can use [ncat](https://nmap.org/download.html) to setup S
 ssh -o "ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p" <root>@<server> -p <port>
 ```
 
-[Learn more](https://hoa.moe/blog/using-hitsz-connect-verge-to-ssh-school-server/#windows)
-
 ## Screenshots
 
 | Windows                                                    | Mac                                                | Linux                                                  |
@@ -168,8 +164,8 @@ Also, any typo is welcome to be fixed.
 
 ## Related Projects
 
-- [chenx-dust/HITsz-Connect-for-Windows](https://github.com/chenx-dust/HITsz-Connect-for-Windows): HITsz Edition of ZJU-Connect-for-Windows. Support advanced settings and multi-platform.
-- [Co-ding-Man/hitsz-connect-for-windows](https://github.com/Co-ding-Man/hitsz-connect-for-windows): Out-of-the-box zju-connect simple GUI for Windows, suitable for HITSZ.
+- [chenx-dust/EZ4Connect](https://github.com/chenx-dust/EZ4Connect): EZ4Connect, a cross-platform GUI for ZJU Connect.
+- [Mythologyli/zju-connect](https://github.com/Mythologyli/zju-connect): ZJU Connect, the underlying VPN client.
 
 ## Credits
 
