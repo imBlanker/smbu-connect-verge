@@ -10,44 +10,8 @@ on:
     branches: ["main", "develop"]
 
 jobs:
-  update-version:
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    permissions: write-all
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-
-      - name: Update version
-        run: |
-          TAG_VERSION="${{ github.ref_name }}"
-          VERSION="${TAG_VERSION#v}"
-          CURRENT_VERSION=$(cat .app-version)
-
-          echo "Current version: $CURRENT_VERSION"
-          echo "New version from tag: $VERSION"
-
-          if [ "$CURRENT_VERSION" != "$VERSION" ]; then
-            echo "Updating .app-version to $VERSION"
-            echo "$VERSION" > .app-version
-
-            git config --global user.name "GitHub Actions"
-            git config --global user.email "actions@github.com"
-
-            git add .app-version
-            git commit -m "chore: bump version to $VERSION"
-            git push
-            echo "Version updated and committed"
-          else
-            echo "Version is already up to date, no changes needed"
-          fi
-
   build:
-    needs: [update-version]
-    if: always() # Continue even if update-version was skipped or failed
+    if: always()
     permissions: write-all
     strategy:
       fail-fast: false
@@ -56,9 +20,6 @@ jobs:
           - os: windows-latest
             os_name: windows
             arch: amd64
-          - os: windows-latest
-            os_name: windows
-            arch: arm64
 
     runs-on: ${{ matrix.os }}
 
@@ -81,21 +42,15 @@ jobs:
       - name: Install Dependencies
         run: uv sync
 
-      # Download ZJU-connect core package
       - name: Download ZJU-connect Core
+        shell: pwsh
         run: |
-          mkdir -p app/core
-          curl -L "https://github.com/Mythologyli/zju-connect/releases/download/v0.9.0/zju-connect-${{ matrix.os_name }}-${{ matrix.arch }}.zip" -o app/core/zju-connect.zip
-          if [ "${{ matrix.os_name }}" = "windows" ]; then
-            powershell -command "Expand-Archive -Path app/core/zju-connect.zip -DestinationPath app/core"
-          else
-            unzip -o app/core/zju-connect.zip -d app/core
-          fi
-          rm app/core/zju-connect.zip
-        shell: bash
+          New-Item -ItemType Directory -Force -Path app/core
+          Invoke-WebRequest -Uri "https://github.com/Mythologyli/zju-connect/releases/download/v0.9.0/zju-connect-${{ matrix.os_name }}-${{ matrix.arch }}.zip" -OutFile app/core/zju-connect.zip
+          Expand-Archive -Path app/core/zju-connect.zip -DestinationPath app/core -Force
+          Remove-Item app/core/zju-connect.zip
 
-      # Windows build
-      - name: Build Executable (Windows)
+      - name: Build Executable
         run: |
           .\.venv\Scripts\Activate.ps1
           pyside6-rcc .\app\resources\resources.qrc -o .\app\common\resources.py
@@ -116,24 +71,32 @@ jobs:
             --remove-output `
             app/main.py
 
-      - name: Compile Installer (Windows)
+      - name: Create Portable ZIP
+        shell: pwsh
         run: |
-          # Install Inno Setup
-          choco install innosetup -y
+          Compress-Archive -Path dist\main.dist\* -DestinationPath dist\smbu-connect-verge-windows-${{ matrix.arch }}-portable.zip
 
-          # Compile installer
+      - name: Compile Installer
+        run: |
+          choco install innosetup -y
           $version = Get-Content .app-version
           $setup_script = ".\setup.iss"
           iscc /DMyAppVersion="$version" `
                /DArchitecture="${{ matrix.arch }}" `
                $setup_script
 
-      # Upload artifacts
-      - name: Archive Executable
+      - name: Upload Installer
         uses: actions/upload-artifact@v4
         with:
-          name: smbu-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}
-          path: dist/smbu-connect-verge-*-setup.exe
+          name: smbu-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}-setup
+          path: dist/smbu-connect-verge-windows-${{ matrix.arch }}-setup.exe
+          if-no-files-found: error
+
+      - name: Upload Portable
+        uses: actions/upload-artifact@v4
+        with:
+          name: smbu-connect-verge-${{ matrix.os_name }}-${{ matrix.arch }}-portable
+          path: dist/smbu-connect-verge-windows-${{ matrix.arch }}-portable.zip
           if-no-files-found: error
 
   release:
@@ -151,7 +114,8 @@ jobs:
       - name: Prepare Release Files
         run: |
           mkdir -p release
-          cp artifacts/*/*.exe release/ 2>/dev/null || true
+          find artifacts -type f \( -name "*.exe" -o -name "*.zip" \) -exec cp {} release/ \;
+          ls -la release/
 
       - name: Publish Release
         uses: ncipollo/release-action@v1
@@ -161,3 +125,4 @@ jobs:
           tag: ${{ github.ref_name }}
           generateReleaseNotes: true
           prerelease: false
+          allowUpdates: true
