@@ -5,3 +5,8 @@ __pycache__/
 **/zju-connect.exe
 .venv/
 *.spec
+.agents/
+.claude/
+.codex/
+.trellis/
+AGENTS.md
